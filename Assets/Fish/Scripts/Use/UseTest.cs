@@ -13,4 +13,8 @@ public class UseTest : MonoBehaviour
     {
         
     }
+
+    public void Rotate() {
+        transform.Rotate(0, 15, 0);
+    }
 }

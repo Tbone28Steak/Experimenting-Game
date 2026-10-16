@@ -1,12 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Interaction : MonoBehaviour
 {
     public bool canGrab;
     public bool canUse;
-    public string useFunction;
     public bool canInteract;
-    public string interactFunction;
+    public UnityEvent onUse;
+    public UnityEvent onInteract;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,30 +25,20 @@ public class Interaction : MonoBehaviour
     }
 
     public void Use() {
-        Debug.Log("double sup");
+        Debug.Log("using object");
 
-        switch(useFunction) {
-            case "test":
-                transform.Rotate(15, 0, 0);
-                break;
-            case "":
-                Debug.Log("no use function found");
-                break;
-            
+        if(onUse != null) {
+            onUse.Invoke();
         }
+
+        
     }
 
     public void Interact() {
-        Debug.Log("sup");
+        Debug.Log("interacting with object");
 
-        switch(interactFunction) {
-            case "test":
-                transform.Rotate(15, 0, 0);
-                break;
-            case "":
-                Debug.Log("no interact function found");
-                break;
-            
+        if(onInteract != null) {
+            onInteract.Invoke();
         }
     }
 }

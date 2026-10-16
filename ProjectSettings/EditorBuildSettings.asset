@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Fish/Scenes/TestSceneA.unity
+    guid: 573dc054f98796848893cb9e112f66b3
+  - enabled: 1
+    path: Assets/Fish/Scenes/TestSceneB.unity
+    guid: 96708166be84c0149923cf87ecdad162
+  - enabled: 1
+    path: Assets/Fish/Scenes/TestSceneC.unity
+    guid: ed5fa0ec64d4245409669d3851d18f99
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

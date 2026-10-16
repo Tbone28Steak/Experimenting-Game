@@ -405,8 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d9b676bebf77d498bc62a77845db8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelTransition
-  transitionScene: TestSceneA
-  collider: {fileID: 0}
+  transitionScene: TestSceneC
 --- !u!65 &180483746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1115,9 +1114,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interaction
   canGrab: 0
   canUse: 0
-  useFunction: 
   canInteract: 1
-  interactFunction: test
+  onUse:
+    m_PersistentCalls:
+      m_Calls: []
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &425761287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1560,9 +1563,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interaction
   canGrab: 1
   canUse: 1
-  useFunction: test
   canInteract: 0
-  interactFunction: 
+  onUse:
+    m_PersistentCalls:
+      m_Calls: []
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &713135139
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4022,9 +4029,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interaction
   canGrab: 0
   canUse: 0
-  useFunction: 
   canInteract: 1
-  interactFunction: 
+  onUse:
+    m_PersistentCalls:
+      m_Calls: []
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1086626131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5322,7 +5333,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469839787}
   m_Enabled: 1
-  serializedVersion: 13
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -5374,7 +5385,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShapeRadius: 0.025
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -6045,9 +6056,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interaction
   canGrab: 1
   canUse: 0
-  useFunction: 
   canInteract: 0
-  interactFunction: 
+  onUse:
+    m_PersistentCalls:
+      m_Calls: []
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1473608390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7644,7 +7659,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
