@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public abstract class ItemClass
+public abstract class ItemClass : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Item")]
+    public string itemName;
+    public Sprite itemIcon;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract ItemClass GetItem();
+    public abstract ToolClass GetTool();
+    public abstract MiscClass GetMisc();
+    public abstract ConsumableClass GetConsumable();
 }

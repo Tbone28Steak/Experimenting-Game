@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class ConsumableClass : MonoBehaviour
+[CreateAssetMenu(fileName = "new Consumable Class", menuName = "Item/Consumable")]
+public class ConsumableClass : ItemClass
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Consumable")]
+    public float saturationValue;
+    public override ItemClass GetItem() {return this;}
+    public override ToolClass GetTool() {return null;}
+    public override MiscClass GetMisc() {return null;}
+    public override ConsumableClass GetConsumable() {return this;}
 }

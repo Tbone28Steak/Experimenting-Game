@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public CharacterController characterController;
     public GameObject playerCamera;
 
-    [Header("InputDebug")]
+    [Header("Input Debug")]
     public Vector2 moveInput;
     public bool jumpInput;
     public Vector2 mouseInput;
@@ -20,15 +21,16 @@ public class PlayerMovement : MonoBehaviour
     public Boolean canMove = true;
 
     [Header("Settings")]
+    public float sensitivity = 0.1f;
     public float moveSpeed = 3f;
     public float sprintSpeed = 6f;
-    public float jumpPower = 16f;
-    public float sensitivity = 0.1f;
-    public float gravity = -30f;
-    public float jumpLength = 0.08f;
-    public float jumpCooldownLength = 0.2f;
+    public float gravity = -12f;
+    public float jumpPower = 10f;
+    public float jumpLength = 0.15f;
+    public float jumpCooldownLength = 0.3f;
 
     [Header("Debug")]
+    public float speed;
     private float xRotation;
     private float yRotation;
     public bool isGrounded;
@@ -36,8 +38,6 @@ public class PlayerMovement : MonoBehaviour
     public bool jumpCooldown;
     public float jumpTime;
     public bool jumping;
-    public float speed;
-
 
     void Start()
     {
@@ -74,30 +74,35 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movementDirection = transform.TransformDirection(new Vector3(moveX * speed, 0, moveY * speed));
 
+        // on ground
         isGrounded = characterController.isGrounded;
         if(characterController.isGrounded) {
             movementDirection.y = -0.2f;
             time = 0;
         }
+
+        // falling
         if(!characterController.isGrounded && !jumping) {
-            movementDirection.y = Mathf.Lerp(-0.2f, gravity, time*2);
-            time += 0.5f * Time.deltaTime;
+            movementDirection.y = Mathf.Lerp(-0.2f, gravity + gravity*time, time);
+            time += 1f * Time.deltaTime;
         }
 
+        // jumping
         if(jumpInput && !jumpCooldown && isGrounded && canJump) {
             jumping = true;
             jumpCooldown = true;
             jumpTime = 0;          
         }
 
-        if(jumpCooldown) {jumpTime += 0.5f * Time.deltaTime;}
-        if(jumping) {movementDirection.y = Mathf.Lerp(jumpPower, 0f, jumpTime*10);}
+        if(jumpCooldown) {jumpTime += 1f * Time.deltaTime;}
+        if(jumping) {movementDirection.y = Mathf.Lerp(jumpPower, 0f, jumpTime);}
 
         if(jumpTime >= jumpLength) {jumping = false;}
         if(jumpTime >= jumpCooldownLength) {
             jumpCooldown = false;
             jumpTime = 0;
         }
+        
         
         if(canMove) {
             characterController.Move(movementDirection * Time.deltaTime);

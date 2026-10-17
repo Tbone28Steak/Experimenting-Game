@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class MiscClass : MonoBehaviour
+[CreateAssetMenu(fileName = "new Misc Class", menuName = "Item/Misc")]
+public class MiscClass : ItemClass
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override ItemClass GetItem() {return this;}
+    public override ToolClass GetTool() {return null;}
+    public override MiscClass GetMisc() {return this;}
+    public override ConsumableClass GetConsumable() {return null;}
 }

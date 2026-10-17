@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class ToolClass : MonoBehaviour
+[CreateAssetMenu(fileName = "new Tool Class", menuName = "Item/Tool")]
+public class ToolClass : ItemClass
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Tool")]
+    public ToolType toolType;
+    public enum ToolType
     {
-        
+        weapon,
+        pickaxe,
+        hammer,
+        axe
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override ItemClass GetItem() {return this;}
+    public override ToolClass GetTool() {return this;}
+    public override MiscClass GetMisc() {return null;}
+    public override ConsumableClass GetConsumable() {return null;}
 }

@@ -1,14 +1,20 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TriggerDoor : MonoBehaviour
 {
-    public string openAnimation;
+    public AnimationType openAnimation;
+
+    public enum AnimationType
+    {
+        rotate,
+        slideHorizontal,
+        slideVertical
+    }
     public Vector3 initialPosition;
     public Vector3 currentPosition;    
-    public Quaternion initialRotation;
-    public Quaternion currentRotation;
+    public Vector3 initialRotation;
+    public Vector3 currentRotation;
 
     public Boolean isOpen = false;
     public float doorTime;
@@ -18,8 +24,8 @@ public class TriggerDoor : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentRotation = transform.rotation;
-        initialRotation = transform.rotation;
+        currentRotation = transform.eulerAngles;
+        initialRotation = transform.eulerAngles;
 
         currentPosition = transform.position;
         initialPosition = transform.position;
@@ -31,21 +37,21 @@ public class TriggerDoor : MonoBehaviour
         if(doorTime < 1) {doorTime += (0.5f * Time.deltaTime) * doorSpeed;}
 
         switch(openAnimation) {
-            case "rotate":
-                // if(isOpen) {currentRotation.y = Mathf.Lerp(currentRotation.y, initialRotation.y + 1, doorTime);}
-                // else       {currentRotation.y = Mathf.Lerp(currentRotation.y, initialRotation.y,      doorTime);}
+            case AnimationType.rotate:            
+                if(isOpen) {currentRotation.y = Mathf.Lerp(currentRotation.y, initialRotation.y + 90, doorTime);}
+                else       {currentRotation.y = Mathf.Lerp(currentRotation.y, initialRotation.y,      doorTime);}
             break;
-            case "slideHorizontal":
+            case AnimationType.slideHorizontal:
                 if(isOpen) {currentPosition.x = Mathf.Lerp(currentPosition.x, initialPosition.x + moveDistance, doorTime);}
                 else       {currentPosition.x = Mathf.Lerp(currentPosition.x, initialPosition.x,                doorTime);}
             break;
-            case "slideVertical":
+            case AnimationType.slideVertical:
                 if(isOpen) {currentPosition.y = Mathf.Lerp(currentPosition.y, initialPosition.y + moveDistance, doorTime);}
                 else       {currentPosition.y = Mathf.Lerp(currentPosition.y, initialPosition.y,                doorTime);}
             break;
         }
 
-        transform.rotation = currentRotation;
+        transform.eulerAngles = currentRotation;
         transform.position = currentPosition;
         
     }

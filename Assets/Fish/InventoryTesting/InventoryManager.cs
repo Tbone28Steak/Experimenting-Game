@@ -1,16 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public ItemClass itemToAdd;
+    public ItemClass itemToRemove;
+    public List<ItemClass> items = new List<ItemClass>();
+
+    public void Start()
     {
-        
+        Add(itemToAdd);
+        Remove(itemToRemove);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Add(ItemClass item)
     {
-        
+        items.Add(item);
+    }
+
+    public void Remove(ItemClass item)
+    {
+        items.Remove(item);
     }
 }
